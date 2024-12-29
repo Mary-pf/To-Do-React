@@ -6,6 +6,10 @@ import { useState } from "react";
 function App() {
   const [tasks, setTasks] = useState([]);
 
+  // محاسبه تعداد تسک ها
+  const completedCount = tasks.filter((task) => task.completed).length;
+  const reminingCount = tasks.length - completedCount;
+
   const addTask = (e) => {
     e.preventDefault();
     const newTaskText = e.target.taskInput.value;
@@ -48,6 +52,11 @@ function App() {
             completeTask={completeTask}
             deleteTask={deleteTask}
           />
+        </section>
+
+        <section className="task-summary">
+          <span>نکمیل شده: {completedCount}</span> |
+          <span>باقی مانده: {reminingCount}</span>
         </section>
       </main>
 

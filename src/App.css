@@ -46,6 +46,7 @@ input[type="text"] {
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 0.8rem;
+  text-align: center;
 }
 
 button {
@@ -105,6 +106,18 @@ li {
 li.completed {
   color: #888;
   background-color: #e0e0e0;
+}
+
+.task-summary {
+  margin-top: 20px;
+  font-size: 0.6rem;
+  text-align: center;
+  color: #333;
+}
+
+.task-summary span {
+  margin: 0 10px;
+  font-weight: bold;
 }
 
 footer {
