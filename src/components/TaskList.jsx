@@ -1,4 +1,21 @@
-function TaskList({ tasks, completeTask, deleteTask }) {
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
+function TaskList({ tasks, completeTask, deleteTask, editTask }) {
+  const [editId, setEditId] = useState(null);
+  const [newText, setNewText] = useState("");
+
+  const handleEdit = (task) => {
+    setEditId(task.id);
+    setNewText(task.text);
+  };
+
+  const handleSave = (id) => {
+    editTask(id, newText);
+    setEditId(null);
+  };
+
   return (
     <ul>
       {tasks.map((task) => (
@@ -7,27 +24,45 @@ function TaskList({ tasks, completeTask, deleteTask }) {
           className={task.completed ? "completed" : ""}
           aria-live="polite"
         >
-          <span
-            style={{ textDecoration: task.completed ? "line-through" : "none" }}
-            aria-label={task.completed ? "تکمیل شده" : "در انتظار"}
-          >
-            {task.text}
-          </span>
-          <div style={{ display: "inline-flex", gap: "10px" }}>
+          {editId === task.id ? (
+            <input
+              className="newText"
+              type="text"
+              value={newText}
+              onChange={(e) => setNewText(e.target.value)}
+            />
+          ) : (
+            <span
+              style={{
+                textDecoration: task.completed ? "line-through" : "none",
+                marginLeft: "2rem",
+              }}
+              aria-label={task.completed ? "تکمیل شده" : "در انتظار"}
+            >
+              {task.text}
+            </span>
+          )}
+          <div style={{ display: "inline-flex", gap: "1px" }}>
             <button
               onClick={() => completeTask(task.id)}
               aria-label="تغییر وضعیت"
             >
               {task.completed ? "بازگشایی" : "تکمیل"}
             </button>
-            {task.completed && (
-              <button
-                onClick={() => deleteTask(task.id)}
-                aria-label="حذف وظیفه"
-              >
-                حذف
+            {/* ویرایش */}
+            {editId === task.id ? (
+              <button className="save-btn" onClick={() => handleSave(task.id)}>
+                ✔️
+              </button>
+            ) : (
+              <button className="edit-btn" onClick={() => handleEdit(task)}>
+                ✏️
               </button>
             )}
+            {/* حذف */}
+            <button onClick={() => deleteTask(task.id)} aria-label="حذف وظیفه">
+              <FontAwesomeIcon icon={faTrash} style={{ color: "#363b45" }} />
+            </button>
           </div>
         </li>
       ))}

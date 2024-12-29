@@ -6,6 +6,10 @@ import { useState } from "react";
 function App() {
   const [tasks, setTasks] = useState([]);
 
+  // ویرایش تسک ها
+  const [, setEditingTask] = useState(null);
+  // const [editText, setEditText] = useState("");
+
   // محاسبه تعداد تسک ها
   const completedCount = tasks.filter((task) => task.completed).length;
   const reminingCount = tasks.length - completedCount;
@@ -28,6 +32,13 @@ function App() {
     );
   };
 
+  const editTask = (id, newText) => {
+    setTasks(
+      tasks.map((task) => (task.id === id ? { ...task, text: newText } : task))
+    );
+    setEditingTask(null);
+  };
+
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
@@ -41,7 +52,6 @@ function App() {
 
       <main>
         <section aria-labelledby="task-form">
-          <h2 id="task-form">افزودن کار جدید</h2>
           <TaskForm addTask={addTask} />
         </section>
 
@@ -51,6 +61,7 @@ function App() {
             tasks={tasks}
             completeTask={completeTask}
             deleteTask={deleteTask}
+            editTask={editTask}
           />
         </section>
 

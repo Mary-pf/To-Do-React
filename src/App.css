@@ -19,9 +19,9 @@ body {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 10px;
-  color: #333;
+  color: #130a74;
 }
 
 h2 {
@@ -43,45 +43,68 @@ form {
 
 input[type="text"] {
   padding: 12px;
-  border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 0.8rem;
   text-align: center;
 }
 
+#taskInput {
+  border: 1px solid #ddd;
+}
+
+.newText {
+  border: none;
+  background-color: #e6e6e6d4;
+}
+
 button {
-  background-color: #4caf50;
+  background-color: #f9f9f9;
   color: white;
   padding: 12px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-button {
-  padding: 8px 12px;
+  font-weight: bold;
   margin: 0 5px;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  transition: 0.3s;
+}
+
+button[type="submit"] {
+  background-color: #45a049;
 }
 
 button:hover {
   opacity: 0.9;
 }
 
-.completed button {
-  background-color: #f1c40f; /* زرد برای بازگشایی */
+button[aria-label="حذف وظیفه"]:hover {
+  background-color: #e74c3c;
 }
 
-button[aria-label="حذف وظیفه"] {
-  background-color: #e74c3c;
+button[aria-label="تغییر وضعیت"] {
+  color: #333;
+}
+
+button[aria-label="تغییر وضعیت"]:hover {
+  background-color: #45a049;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #666;
+}
+
+.save-btn {
+  background-color: #e6e6e6d4;
+}
+
+.completed button {
+  background-color: #e0e0e0;
+}
+.completed button[aria-label="تغییر وضعیت"] {
+  background-color: #f1c40f; /* زرد برای بازگشایی */
   color: white;
 }
 
@@ -92,7 +115,7 @@ ul {
 }
 
 li {
-  padding: 15px;
+  padding: 4px;
   margin: 10px 0;
   background-color: #f9f9f9;
   border-radius: 5px;
@@ -100,7 +123,7 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.3s ease;
+  transition: 0.3s ease;
 }
 
 li.completed {

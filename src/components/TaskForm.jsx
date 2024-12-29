@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 function TaskForm({ addTask }) {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input.trim()) {
       addTask(e);
-      setInput('');
+      setInput("");
     }
   };
 
@@ -18,7 +18,7 @@ function TaskForm({ addTask }) {
         id="taskInput"
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        placeholder="نام کار جدید را وارد کنید..."
+        placeholder="نام کار جدید را وارد کنید"
         required
       />
       <button type="submit">افزودن</button>
