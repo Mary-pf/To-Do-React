@@ -57,6 +57,39 @@ input[type="text"] {
   background-color: #e6e6e6d4;
 }
 
+input[type="checkbox"] {
+  appearance: none; /* حذف استایل پیش‌فرض مرورگر */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #002347;
+  border-radius: 50%; /* دایره‌ای کردن */
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #585f81; /* رنگ پس‌زمینه در حالت فعال */
+  border: 2px solid #001f40;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
 button {
   background-color: #f9f9f9;
   color: white;
@@ -75,24 +108,16 @@ button[type="submit"] {
   background-color: #45a049;
 }
 
-button:hover {
-  opacity: 0.9;
-}
-
-button[aria-label="حذف وظیفه"]:hover {
+button[aria-label="حذف وظیفه"] {
   background-color: #e74c3c;
 }
 
 button[aria-label="تغییر وضعیت"] {
-  color: #333;
-}
-
-button[aria-label="تغییر وضعیت"]:hover {
   background-color: #45a049;
   color: white;
 }
 
-.edit-btn:hover {
+.edit-btn {
   background-color: #666;
 }
 
@@ -106,6 +131,15 @@ button[aria-label="تغییر وضعیت"]:hover {
 .completed button[aria-label="تغییر وضعیت"] {
   background-color: #f1c40f; /* زرد برای بازگشایی */
   color: white;
+}
+
+button:hover {
+  filter: brightness(48%);
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 ul {

@@ -24,6 +24,12 @@ function TaskList({ tasks, completeTask, deleteTask, editTask }) {
           className={task.completed ? "completed" : ""}
           aria-live="polite"
         >
+          <input
+            type="checkbox"
+            checked={task.completed}
+            onChange={() => completeTask(task.id)}
+            aria-label="تکمیل وظیفه"
+          />
           {editId === task.id ? (
             <input
               className="newText"
@@ -55,7 +61,11 @@ function TaskList({ tasks, completeTask, deleteTask, editTask }) {
                 ✔️
               </button>
             ) : (
-              <button className="edit-btn" onClick={() => handleEdit(task)}>
+              <button
+                className="edit-btn"
+                onClick={() => handleEdit(task)}
+                disabled={task.completed}
+              >
                 ✏️
               </button>
             )}

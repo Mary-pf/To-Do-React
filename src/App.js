@@ -1,7 +1,8 @@
 import "./App.css";
 import TaskList from "./components/TaskList";
 import TaskForm from "./components/TaskForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import swal from "sweetalert";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -42,6 +43,19 @@ function App() {
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
+
+  // نمایش پیام
+  useEffect(() => {
+    const allCompleted = tasks.every((task) => task.completed);
+    if (tasks.length > 0 && allCompleted) {
+      swal({
+        title: "تبریک!",
+        text: "همه تسک‌ها تکمیل شدند!",
+        icon: "success",
+        button: "باشه",
+      });
+    }
+  }, [tasks]);
 
   return (
     <div className="container">
