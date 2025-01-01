@@ -6,16 +6,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .container {
   background-color: #fff;
+  margin-top: 20px;
+  margin-bottom: 20px;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 500px;
+  width: 550px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -91,7 +95,6 @@ input[type="checkbox"]:checked::before {
 }
 
 button {
-  background-color: #f9f9f9;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -100,12 +103,13 @@ button {
   font-size: 1rem;
   font-weight: bold;
   margin: 0 5px;
-  border: none;
   transition: 0.3s;
 }
 
 button[type="submit"] {
-  background-color: #45a049;
+  background-color: #10ac84;
+  margin-right: 0;
+  width: 99.8%;
 }
 
 button[aria-label="حذف وظیفه"] {
@@ -113,7 +117,7 @@ button[aria-label="حذف وظیفه"] {
 }
 
 button[aria-label="تغییر وضعیت"] {
-  background-color: #45a049;
+  background-color: #10ac84;
   color: white;
 }
 
@@ -125,9 +129,6 @@ button[aria-label="تغییر وضعیت"] {
   background-color: #e6e6e6d4;
 }
 
-.completed button {
-  background-color: #e0e0e0;
-}
 .completed button[aria-label="تغییر وضعیت"] {
   background-color: #f1c40f; /* زرد برای بازگشایی */
   color: white;
@@ -140,6 +141,30 @@ button:hover {
 button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+.filter-buttons {
+  background-color: #30336b;
+  /* width: 100%; */
+  border-radius: 5px;
+}
+
+.filter-buttons button {
+  background-color: #30336b;
+  border: none !important;
+  outline: none;
+  color: #9a9a9eee;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-buttons button:hover {
+  filter: brightness(100%);
+}
+
+.filter-buttons button.active {
+  color: #ffffff;
+  outline: none !important;
 }
 
 ul {
@@ -155,6 +180,7 @@ li {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   transition: 0.3s ease;
